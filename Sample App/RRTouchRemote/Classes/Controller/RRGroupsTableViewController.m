@@ -82,7 +82,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RRGroupCell" forIndexPath:indexPath];
     [cell.textLabel setText: listingItem[@"dmap.itemname"]];
     [cell.detailTextLabel setText:[NSString stringWithFormat:@"items: %@", listingItem[@"dmap.itemcount"]]];
-
+    [cell.imageView setImage:[UIImage imageNamed:@"RRImagePlaceholder"]];
+    
+    [_touchRemoteService artworkForGroupID: [listingItem[@"dmap.itemid"] unsignedIntegerValue]
+                              inDatabaseID: _databaseID
+                                      type: RRGroupTypeAlbums
+                         completionHandler: ^(UIImage *image, NSError *error) {
+                             [cell.imageView setImage:image];
+                         }];
+    
     return cell;
 }
 

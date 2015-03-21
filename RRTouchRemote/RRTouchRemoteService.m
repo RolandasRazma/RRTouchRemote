@@ -253,4 +253,28 @@
 }
 
 
+- (void)artworkForGroupID:(NSUInteger)groupID inDatabaseID:(NSUInteger)databaseID type:(RRGroupType)type completionHandler:(void (^)(UIImage *image, NSError *error))completionHandler {
+    
+    NSString *groupType;
+    switch ( type ) {
+        case RRGroupTypeArtists: {
+            groupType = @"artists";
+            break;
+        }
+        case RRGroupTypeAlbums: {
+            groupType = @"albums";
+            break;
+        }
+    }
+    
+    [NSURLConnection sendAsynchronousRequest: [self requestForPath: [NSString stringWithFormat:@"/databases/%lu/groups/%lu/extra_data/artwork", (unsigned long)databaseID, (unsigned long)groupID]
+                                                        queryItems: @{@"mw": @100, @"mh": @100, @"group-type": groupType}]
+                                       queue: [NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               completionHandler( [UIImage imageWithData:data], connectionError );
+                           }];
+    
+}
+
+
 @end
