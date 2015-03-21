@@ -1,5 +1,5 @@
 //
-//  RRPlaylistsTableViewController.h
+//  RRContainersTableViewController.h
 //  RRTouchRemote
 //
 //  Created by Rolandas Razma on 20/03/2015.
@@ -31,7 +31,7 @@
 #import "RRTouchRemoteService.h"
 
 
-@interface RRPlaylistsTableViewController : UITableViewController
+@interface RRContainersTableViewController : UITableViewController
 
 @property (nonatomic, retain) RRTouchRemoteService *touchRemoteService;
 @property (nonatomic, assign) NSUInteger databaseID;

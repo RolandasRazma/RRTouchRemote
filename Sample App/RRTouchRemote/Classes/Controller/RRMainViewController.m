@@ -68,7 +68,7 @@
     [_touchRemote startAdvertising];
 
     // If you already have paired service you can connect to it directly
-//    [_touchRemote findServiceWithName: @"97B2006B3FAC808A"
+//    [_touchRemote findServiceWithName: @"7096C619659D3F7B"
 //                    completionHandler: ^(RRTouchRemoteService *service) {
 //                        [self setTouchRemoteService: service];
 //                    }];

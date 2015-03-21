@@ -1,5 +1,5 @@
 //
-//  RRPlaylistsTableViewController.m
+//  RRContainersTableViewController.m
 //  RRTouchRemote
 //
 //  Created by Rolandas Razma on 20/03/2015.
@@ -27,11 +27,11 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "RRPlaylistsTableViewController.h"
+#import "RRContainersTableViewController.h"
 #import "RRItemsTableViewController.h"
 
 
-@implementation RRPlaylistsTableViewController {
+@implementation RRContainersTableViewController {
     RRTouchRemoteService    *_touchRemoteService;
     NSUInteger  _databaseID;
     NSArray     *_playlists;

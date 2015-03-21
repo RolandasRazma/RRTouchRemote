@@ -18,7 +18,7 @@
 		F014EE8B1ABCA30B00F8A988 /* RRTouchRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE7F1ABCA30B00F8A988 /* RRTouchRemoteService.m */; };
 		F014EE8E1ABCA66F00F8A988 /* RRDatabaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE8D1ABCA66F00F8A988 /* RRDatabaseTableViewController.m */; };
 		F068EDE61ABCA0ED00268A5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F068EDE51ABCA0ED00268A5A /* main.m */; };
-		F08E49C81ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08E49C71ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m */; };
+		F08E49C81ABCDC4D002CFE75 /* RRContainersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08E49C71ABCDC4D002CFE75 /* RRContainersTableViewController.m */; };
 		F08E49CB1ABCDE01002CFE75 /* RRItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08E49CA1ABCDE01002CFE75 /* RRItemsTableViewController.m */; };
 		F0C906AA1ABCC267000B1782 /* RRGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C906A91ABCC267000B1782 /* RRGroupsTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -44,8 +44,8 @@
 		F014EE8D1ABCA66F00F8A988 /* RRDatabaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRDatabaseTableViewController.m; sourceTree = "<group>"; };
 		F068EDE01ABCA0ED00268A5A /* RRTouchRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RRTouchRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F068EDE51ABCA0ED00268A5A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F08E49C61ABCDC4D002CFE75 /* RRPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRPlaylistsTableViewController.h; sourceTree = "<group>"; };
-		F08E49C71ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRPlaylistsTableViewController.m; sourceTree = "<group>"; };
+		F08E49C61ABCDC4D002CFE75 /* RRContainersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRContainersTableViewController.h; sourceTree = "<group>"; };
+		F08E49C71ABCDC4D002CFE75 /* RRContainersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRContainersTableViewController.m; sourceTree = "<group>"; };
 		F08E49C91ABCDE01002CFE75 /* RRItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRItemsTableViewController.h; sourceTree = "<group>"; };
 		F08E49CA1ABCDE01002CFE75 /* RRItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRItemsTableViewController.m; sourceTree = "<group>"; };
 		F0C906A81ABCC267000B1782 /* RRGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGroupsTableViewController.h; sourceTree = "<group>"; };
@@ -93,10 +93,10 @@
 				F014EE661ABCA22B00F8A988 /* RRMainViewController.m */,
 				F014EE8C1ABCA66F00F8A988 /* RRDatabaseTableViewController.h */,
 				F014EE8D1ABCA66F00F8A988 /* RRDatabaseTableViewController.m */,
+				F08E49C61ABCDC4D002CFE75 /* RRContainersTableViewController.h */,
+				F08E49C71ABCDC4D002CFE75 /* RRContainersTableViewController.m */,
 				F0C906A81ABCC267000B1782 /* RRGroupsTableViewController.h */,
 				F0C906A91ABCC267000B1782 /* RRGroupsTableViewController.m */,
-				F08E49C61ABCDC4D002CFE75 /* RRPlaylistsTableViewController.h */,
-				F08E49C71ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m */,
 				F08E49C91ABCDE01002CFE75 /* RRItemsTableViewController.h */,
 				F08E49CA1ABCDE01002CFE75 /* RRItemsTableViewController.m */,
 			);
@@ -256,7 +256,7 @@
 			files = (
 				F068EDE61ABCA0ED00268A5A /* main.m in Sources */,
 				F014EE831ABCA30B00F8A988 /* dmap_parser.c in Sources */,
-				F08E49C81ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m in Sources */,
+				F08E49C81ABCDC4D002CFE75 /* RRContainersTableViewController.m in Sources */,
 				F014EE8E1ABCA66F00F8A988 /* RRDatabaseTableViewController.m in Sources */,
 				F014EE6C1ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.m in Sources */,
 				F014EE8A1ABCA30B00F8A988 /* RRTouchRemote.m in Sources */,
