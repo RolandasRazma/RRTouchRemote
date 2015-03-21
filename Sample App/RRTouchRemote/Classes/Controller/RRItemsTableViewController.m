@@ -48,18 +48,18 @@
     if( _containerID ){
         [_touchRemoteService itemsInDatabase: _databaseID
                                  containerID: _containerID
-                                        meta: nil
+                                        meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist"]
                            completionHandler: ^(id items, NSError *error) {
                                [self setItems: items[@"dmap.listing"][@"dmap.listingitem"]];
                            }];
     }else{
         [_touchRemoteService itemsInDatabase: _databaseID
-                                        meta: nil
+                                        meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist"]
                            completionHandler: ^(id items, NSError *error) {
                                [self setItems: items[@"dmap.listing"][@"dmap.listingitem"]];
                            }];
     }
-    
+
 }
 
 
