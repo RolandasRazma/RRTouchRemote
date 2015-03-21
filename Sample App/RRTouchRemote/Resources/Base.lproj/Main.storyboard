@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Database-->
@@ -58,7 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RRGroupCell" textLabel="WT3-3g-z65" detailTextLabel="VaB-XT-Sv1" style="IBUITableViewCellStyleSubtitle" id="cfA-kt-QC2">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RRGroupCell" textLabel="WT3-3g-z65" detailTextLabel="VaB-XT-Sv1" style="IBUITableViewCellStyleSubtitle" id="cfA-kt-QC2">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cfA-kt-QC2" id="RoW-AM-162">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -180,7 +181,20 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pair with AppleTV or iTunes using any code" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXK-ew-L8i">
+                                <rect key="frame" x="16" y="193" width="288" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="oXK-ew-L8i" secondAttribute="trailing" id="2ur-uN-TCU"/>
+                            <constraint firstItem="oXK-ew-L8i" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Gk5-hI-e1F"/>
+                            <constraint firstAttribute="centerY" secondItem="oXK-ew-L8i" secondAttribute="centerY" constant="39" id="zjK-XX-rt3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZPj-0b-VH0"/>
                     <connections>
@@ -189,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="146.66666666666666" y="-4.7333333333333334"/>
+            <point key="canvasLocation" x="146" y="-5"/>
         </scene>
         <!--Containers-->
         <scene sceneID="ENI-U4-XAO">
