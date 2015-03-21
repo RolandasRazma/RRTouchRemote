@@ -75,7 +75,17 @@
 
 
 - (void)setPlaylists:(NSArray *)playlists {
-    _playlists = playlists;
+    
+    // Remove items without name - AppleTV returns them for some reason...
+    NSMutableArray *mutablePlaylists = [playlists mutableCopy];
+    [mutablePlaylists enumerateObjectsUsingBlock: ^(NSDictionary *item, NSUInteger idx, BOOL *stop) {
+        if( !item[@"dmap.itemname"] ){
+            [mutablePlaylists removeObject:item];
+        }
+    }];
+    
+    // Assign new container
+    _playlists = [mutablePlaylists copy];
     
     [self.tableView reloadData];
 }
