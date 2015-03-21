@@ -50,8 +50,7 @@
     NSDictionary        *_netServiceRemoteRequest;
     
     NSMutableData       *_inputStreamData;
-    NSData              *_outputStreamData;
-    NSUInteger          _outputStreamDataSendByteIndex;
+    NSMutableData       *_outputStreamData;
     
     NSNetServiceBrowser *_netServiceBrowser;
     NSMutableSet        *_netServiceBrowserServices;
@@ -194,11 +193,9 @@
                                                                       @"cmpg": @(_pairID),
                                                                       @"cmnm": _name}}];
             
-            NSMutableData *httpData = [NSMutableData data];
-            [httpData appendData: [[NSString stringWithFormat:@"HTTP/1.1 200 OK\r\nContent-Length: %zu\r\n\r\n", daapData.length] dataUsingEncoding:NSUTF8StringEncoding]];
-            [httpData appendData: daapData];
-            
-            _outputStreamData = [httpData copy];
+            _outputStreamData = [NSMutableData data];
+            [_outputStreamData appendData: [[NSString stringWithFormat:@"HTTP/1.1 200 OK\r\nContent-Length: %zu\r\n\r\n", daapData.length] dataUsingEncoding:NSUTF8StringEncoding]];
+            [_outputStreamData appendData: daapData];
         }
         
     }
@@ -208,25 +205,22 @@
 
 - (void)writeToStream:(NSOutputStream *)stream {
     
+    NSInteger bufferLength = MIN([_outputStreamData length], 1024);
+    
     // do we have what to write?
-    if( _outputStreamDataSendByteIndex == _outputStreamData.length ) {
+    if( !bufferLength ){
         [self closeStream:stream];
         return;
     }
 
-    NSUInteger dataLength = [_outputStreamData length];
     uint8_t *readBytes = (uint8_t *)[_outputStreamData bytes];
-    
-    readBytes += _outputStreamDataSendByteIndex;
-    
-    NSInteger bufferLength = ((dataLength -_outputStreamDataSendByteIndex >= 1024) ? 1024 : (dataLength -_outputStreamDataSendByteIndex));
     
     uint8_t buffer[bufferLength];
     memcpy(buffer, readBytes, bufferLength);
     
     bufferLength = [stream write:(const uint8_t *)buffer maxLength:bufferLength];
     
-    _outputStreamDataSendByteIndex += bufferLength;
+    [_outputStreamData replaceBytesInRange:NSMakeRange(0, bufferLength) withBytes:NULL length:0];
     
 }
 
@@ -243,7 +237,6 @@
         _netServiceRemoteRequest        = nil;
         _netServiceOutputStream         = nil;
         _outputStreamData               = nil;
-        _outputStreamDataSendByteIndex  = 0;
     }else{
         _inputStreamData = nil;
     }
