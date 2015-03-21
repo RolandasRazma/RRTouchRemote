@@ -46,7 +46,7 @@
     
     [_touchRemoteService groupsInDatabase: _databaseID
                                      type: RRGroupTypeAlbums
-                                     meta: nil
+                                     meta: @[@"dmap.itemname", @"dmap.itemcount"]
                         completionHandler: ^(id groups, NSError *error) {
                             [self setGroups: groups[@"agal"][@"dmap.listing"][@"dmap.listingitem"]];
                         }];
