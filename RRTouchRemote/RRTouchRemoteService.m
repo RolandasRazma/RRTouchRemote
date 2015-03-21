@@ -119,7 +119,7 @@
                                
                                if ( [dictionary[@"dmap.loginresponse"][@"dmap.status"] intValue] == 200 ) {
                                    _sessionID = dictionary[@"dmap.loginresponse"][@"dmap.sessionid"];
-                               }else{
+                               }else if( !connectionError ){
                                    // generate error
                                    NSAssert(NO, @"Error");
                                }
