@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F014EE601ABCA21000F8A988 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F014EE581ABCA21000F8A988 /* LaunchScreen.xib */; };
+		F014EE611ABCA21000F8A988 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F014EE5A1ABCA21000F8A988 /* Main.storyboard */; };
+		F014EE621ABCA21000F8A988 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F014EE5C1ABCA21000F8A988 /* Images.xcassets */; };
+		F014EE6B1ABCA22B00F8A988 /* RRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE661ABCA22B00F8A988 /* RRMainViewController.m */; };
+		F014EE6C1ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE691ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.m */; };
+		F014EE831ABCA30B00F8A988 /* dmap_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = F014EE731ABCA30B00F8A988 /* dmap_parser.c */; };
+		F014EE891ABCA30B00F8A988 /* RRDMAP.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE7B1ABCA30B00F8A988 /* RRDMAP.m */; };
+		F014EE8A1ABCA30B00F8A988 /* RRTouchRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE7D1ABCA30B00F8A988 /* RRTouchRemote.m */; };
+		F014EE8B1ABCA30B00F8A988 /* RRTouchRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE7F1ABCA30B00F8A988 /* RRTouchRemoteService.m */; };
+		F014EE8E1ABCA66F00F8A988 /* RRDatabaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F014EE8D1ABCA66F00F8A988 /* RRDatabaseTableViewController.m */; };
+		F068EDE61ABCA0ED00268A5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F068EDE51ABCA0ED00268A5A /* main.m */; };
+		F08E49C81ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08E49C71ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m */; };
+		F08E49CB1ABCDE01002CFE75 /* RRItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F08E49CA1ABCDE01002CFE75 /* RRItemsTableViewController.m */; };
+		F0C906AA1ABCC267000B1782 /* RRGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C906A91ABCC267000B1782 /* RRGroupsTableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F014EE591ABCA21000F8A988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F014EE5B1ABCA21000F8A988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F014EE5C1ABCA21000F8A988 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F014EE5D1ABCA21000F8A988 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F014EE651ABCA22B00F8A988 /* RRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRMainViewController.h; sourceTree = "<group>"; };
+		F014EE661ABCA22B00F8A988 /* RRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRMainViewController.m; sourceTree = "<group>"; };
+		F014EE681ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRTouchRemoteApplicationDelegate.h; sourceTree = "<group>"; };
+		F014EE691ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRTouchRemoteApplicationDelegate.m; sourceTree = "<group>"; };
+		F014EE731ABCA30B00F8A988 /* dmap_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dmap_parser.c; sourceTree = "<group>"; };
+		F014EE741ABCA30B00F8A988 /* dmap_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmap_parser.h; sourceTree = "<group>"; };
+		F014EE7A1ABCA30B00F8A988 /* RRDMAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRDMAP.h; sourceTree = "<group>"; };
+		F014EE7B1ABCA30B00F8A988 /* RRDMAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRDMAP.m; sourceTree = "<group>"; };
+		F014EE7C1ABCA30B00F8A988 /* RRTouchRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRTouchRemote.h; sourceTree = "<group>"; };
+		F014EE7D1ABCA30B00F8A988 /* RRTouchRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRTouchRemote.m; sourceTree = "<group>"; };
+		F014EE7E1ABCA30B00F8A988 /* RRTouchRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRTouchRemoteService.h; sourceTree = "<group>"; };
+		F014EE7F1ABCA30B00F8A988 /* RRTouchRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRTouchRemoteService.m; sourceTree = "<group>"; };
+		F014EE8C1ABCA66F00F8A988 /* RRDatabaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRDatabaseTableViewController.h; sourceTree = "<group>"; };
+		F014EE8D1ABCA66F00F8A988 /* RRDatabaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRDatabaseTableViewController.m; sourceTree = "<group>"; };
+		F068EDE01ABCA0ED00268A5A /* RRTouchRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RRTouchRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F068EDE51ABCA0ED00268A5A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F08E49C61ABCDC4D002CFE75 /* RRPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRPlaylistsTableViewController.h; sourceTree = "<group>"; };
+		F08E49C71ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRPlaylistsTableViewController.m; sourceTree = "<group>"; };
+		F08E49C91ABCDE01002CFE75 /* RRItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRItemsTableViewController.h; sourceTree = "<group>"; };
+		F08E49CA1ABCDE01002CFE75 /* RRItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRItemsTableViewController.m; sourceTree = "<group>"; };
+		F0C906A81ABCC267000B1782 /* RRGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGroupsTableViewController.h; sourceTree = "<group>"; };
+		F0C906A91ABCC267000B1782 /* RRGroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGroupsTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F068EDDD1ABCA0ED00268A5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F014EE521ABCA21000F8A988 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F014EE6A1ABCA22B00F8A988 /* View */,
+				F014EE671ABCA22B00F8A988 /* Model */,
+				F014EE641ABCA22B00F8A988 /* Controller */,
+				F014EE681ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.h */,
+				F014EE691ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F014EE571ABCA21000F8A988 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F014EE5D1ABCA21000F8A988 /* Info.plist */,
+				F014EE5C1ABCA21000F8A988 /* Images.xcassets */,
+				F014EE581ABCA21000F8A988 /* LaunchScreen.xib */,
+				F014EE5A1ABCA21000F8A988 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F014EE641ABCA22B00F8A988 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F014EE651ABCA22B00F8A988 /* RRMainViewController.h */,
+				F014EE661ABCA22B00F8A988 /* RRMainViewController.m */,
+				F014EE8C1ABCA66F00F8A988 /* RRDatabaseTableViewController.h */,
+				F014EE8D1ABCA66F00F8A988 /* RRDatabaseTableViewController.m */,
+				F0C906A81ABCC267000B1782 /* RRGroupsTableViewController.h */,
+				F0C906A91ABCC267000B1782 /* RRGroupsTableViewController.m */,
+				F08E49C61ABCDC4D002CFE75 /* RRPlaylistsTableViewController.h */,
+				F08E49C71ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m */,
+				F08E49C91ABCDE01002CFE75 /* RRItemsTableViewController.h */,
+				F08E49CA1ABCDE01002CFE75 /* RRItemsTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F014EE671ABCA22B00F8A988 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F014EE6A1ABCA22B00F8A988 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F014EE6D1ABCA2FC00F8A988 /* Frameworks & Librarys */ = {
+			isa = PBXGroup;
+			children = (
+				F014EE6E1ABCA30B00F8A988 /* RRTouchRemote */,
+			);
+			name = "Frameworks & Librarys";
+			sourceTree = "<group>";
+		};
+		F014EE6E1ABCA30B00F8A988 /* RRTouchRemote */ = {
+			isa = PBXGroup;
+			children = (
+				F014EE6F1ABCA30B00F8A988 /* dmap-parser */,
+				F014EE7A1ABCA30B00F8A988 /* RRDMAP.h */,
+				F014EE7B1ABCA30B00F8A988 /* RRDMAP.m */,
+				F014EE7C1ABCA30B00F8A988 /* RRTouchRemote.h */,
+				F014EE7D1ABCA30B00F8A988 /* RRTouchRemote.m */,
+				F014EE7E1ABCA30B00F8A988 /* RRTouchRemoteService.h */,
+				F014EE7F1ABCA30B00F8A988 /* RRTouchRemoteService.m */,
+			);
+			name = RRTouchRemote;
+			path = ../../RRTouchRemote;
+			sourceTree = "<group>";
+		};
+		F014EE6F1ABCA30B00F8A988 /* dmap-parser */ = {
+			isa = PBXGroup;
+			children = (
+				F014EE741ABCA30B00F8A988 /* dmap_parser.h */,
+				F014EE731ABCA30B00F8A988 /* dmap_parser.c */,
+			);
+			path = "dmap-parser";
+			sourceTree = "<group>";
+		};
+		F068EDD71ABCA0ED00268A5A = {
+			isa = PBXGroup;
+			children = (
+				F068EDE21ABCA0ED00268A5A /* RRTouchRemote */,
+				F068EDE11ABCA0ED00268A5A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F068EDE11ABCA0ED00268A5A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F068EDE01ABCA0ED00268A5A /* RRTouchRemote.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F068EDE21ABCA0ED00268A5A /* RRTouchRemote */ = {
+			isa = PBXGroup;
+			children = (
+				F014EE521ABCA21000F8A988 /* Classes */,
+				F014EE571ABCA21000F8A988 /* Resources */,
+				F068EDE31ABCA0ED00268A5A /* Supporting Files */,
+				F014EE6D1ABCA2FC00F8A988 /* Frameworks & Librarys */,
+			);
+			path = RRTouchRemote;
+			sourceTree = "<group>";
+		};
+		F068EDE31ABCA0ED00268A5A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F068EDE51ABCA0ED00268A5A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F068EDDF1ABCA0ED00268A5A /* RRTouchRemote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F068EE031ABCA0ED00268A5A /* Build configuration list for PBXNativeTarget "RRTouchRemote" */;
+			buildPhases = (
+				F068EDDC1ABCA0ED00268A5A /* Sources */,
+				F068EDDD1ABCA0ED00268A5A /* Frameworks */,
+				F068EDDE1ABCA0ED00268A5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RRTouchRemote;
+			productName = RRTouchRemote;
+			productReference = F068EDE01ABCA0ED00268A5A /* RRTouchRemote.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F068EDD81ABCA0ED00268A5A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Rolandas Razma";
+				TargetAttributes = {
+					F068EDDF1ABCA0ED00268A5A = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = F068EDDB1ABCA0ED00268A5A /* Build configuration list for PBXProject "RRTouchRemote" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F068EDD71ABCA0ED00268A5A;
+			productRefGroup = F068EDE11ABCA0ED00268A5A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F068EDDF1ABCA0ED00268A5A /* RRTouchRemote */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F068EDDE1ABCA0ED00268A5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F014EE621ABCA21000F8A988 /* Images.xcassets in Resources */,
+				F014EE601ABCA21000F8A988 /* LaunchScreen.xib in Resources */,
+				F014EE611ABCA21000F8A988 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F068EDDC1ABCA0ED00268A5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F068EDE61ABCA0ED00268A5A /* main.m in Sources */,
+				F014EE831ABCA30B00F8A988 /* dmap_parser.c in Sources */,
+				F08E49C81ABCDC4D002CFE75 /* RRPlaylistsTableViewController.m in Sources */,
+				F014EE8E1ABCA66F00F8A988 /* RRDatabaseTableViewController.m in Sources */,
+				F014EE6C1ABCA22B00F8A988 /* RRTouchRemoteApplicationDelegate.m in Sources */,
+				F014EE8A1ABCA30B00F8A988 /* RRTouchRemote.m in Sources */,
+				F08E49CB1ABCDE01002CFE75 /* RRItemsTableViewController.m in Sources */,
+				F014EE8B1ABCA30B00F8A988 /* RRTouchRemoteService.m in Sources */,
+				F014EE891ABCA30B00F8A988 /* RRDMAP.m in Sources */,
+				F014EE6B1ABCA22B00F8A988 /* RRMainViewController.m in Sources */,
+				F0C906AA1ABCC267000B1782 /* RRGroupsTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F014EE581ABCA21000F8A988 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F014EE591ABCA21000F8A988 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		F014EE5A1ABCA21000F8A988 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F014EE5B1ABCA21000F8A988 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F068EE011ABCA0ED00268A5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F068EE021ABCA0ED00268A5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F068EE041ABCA0ED00268A5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RRTouchRemote/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F068EE051ABCA0ED00268A5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RRTouchRemote/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F068EDDB1ABCA0ED00268A5A /* Build configuration list for PBXProject "RRTouchRemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F068EE011ABCA0ED00268A5A /* Debug */,
+				F068EE021ABCA0ED00268A5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F068EE031ABCA0ED00268A5A /* Build configuration list for PBXNativeTarget "RRTouchRemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F068EE041ABCA0ED00268A5A /* Debug */,
+				F068EE051ABCA0ED00268A5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F068EDD81ABCA0ED00268A5A /* Project object */;
+}
