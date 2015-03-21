@@ -88,7 +88,7 @@
 
 
 - (void)startAdvertising {
-    
+
     _netService = [[NSNetService alloc] initWithDomain: @"local"
                                                   type: @"_touch-remote._tcp"
                                                   name: _name
@@ -96,10 +96,11 @@
     
     [_netService setTXTRecordData: [NSNetService dataFromTXTRecordDictionary:@{
                                                                                @"txtvers": @"1",
-                                                                               @"DvNm": _name,
-                                                                               @"RemN": @"Remote",
-                                                                               @"Pair": [NSString stringWithFormat:@"%016lX", (unsigned long)_pairID]
-                                                                               }]];
+                                                                                  @"DvNm": _name,
+                                                                                  @"RemN": @"Remote",
+                                                                                  @"Pair": [NSString stringWithFormat:@"%016lX", (unsigned long)_pairID],
+                                                                                  @"RemV": @"10000",
+                                                                                  @"DvTy": [[UIDevice currentDevice] model]}]];
     [_netService setDelegate:self];
     
     [_netService publishWithOptions:NSNetServiceListenForConnections];
@@ -191,8 +192,10 @@
             // Generate response
             NSData *daapData = [RRDMAP dataFromDictionary: @{ @"cmpa": @{
                                                                       @"cmpg": @(_pairID),
-                                                                      @"cmnm": _name}}];
-            
+                                                                      @"cmnm": _name,
+                                                                      @"cmty": [[UIDevice currentDevice] model]
+                                                                      }}];
+
             _outputStreamData = [NSMutableData data];
             [_outputStreamData appendData: [[NSString stringWithFormat:@"HTTP/1.1 200 OK\r\nContent-Length: %zu\r\n\r\n", daapData.length] dataUsingEncoding:NSUTF8StringEncoding]];
             [_outputStreamData appendData: daapData];
