@@ -47,6 +47,7 @@
     [_touchRemoteService groupsInDatabase: _databaseID
                                      type: RRGroupTypeAlbums
                                      meta: @[@"dmap.itemname", @"dmap.itemcount"]
+                                    query: @"('com.apple.itunes.extended-media-kind:1','com.apple.itunes.extended-media-kind:64')"
                         completionHandler: ^(id groups, NSError *error) {
                             [self setGroups: groups[@"agal"][@"dmap.listing"][@"dmap.listingitem"]];
                         }];

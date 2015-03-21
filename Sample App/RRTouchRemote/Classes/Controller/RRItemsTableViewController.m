@@ -49,12 +49,14 @@
         [_touchRemoteService itemsInDatabase: _databaseID
                                  containerID: _containerID
                                         meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist"]
+                                       query: @"('com.apple.itunes.extended-media-kind:1','com.apple.itunes.extended-media-kind:64')"
                            completionHandler: ^(id items, NSError *error) {
                                [self setItems: items[@"dmap.listing"][@"dmap.listingitem"]];
                            }];
     }else{
         [_touchRemoteService itemsInDatabase: _databaseID
                                         meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist"]
+                                       query: @"('com.apple.itunes.extended-media-kind:1','com.apple.itunes.extended-media-kind:64')"
                            completionHandler: ^(id items, NSError *error) {
                                [self setItems: items[@"dmap.listing"][@"dmap.listingitem"]];
                            }];

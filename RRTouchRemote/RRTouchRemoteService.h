@@ -46,10 +46,10 @@ typedef NS_ENUM(NSUInteger, RRGroupType) {
 - (void)loginWithCompletionHandler:(void (^)(NSError *error))completionHandler;
 - (void)serverInfoWithCompletionHandler:(void (^)(id serverInfo, NSError *error))completionHandler;
 - (void)databasesWithCompletionHandler:(void (^)(id databases, NSError *error))completionHandler;
-- (void)groupsInDatabase:(NSUInteger)databaseID type:(RRGroupType)type meta:(NSArray *)meta completionHandler:(void (^)(id groups, NSError *error))completionHandler;
+- (void)groupsInDatabase:(NSUInteger)databaseID type:(RRGroupType)type meta:(NSArray *)meta query:(NSString *)query completionHandler:(void (^)(id groups, NSError *error))completionHandler;
 - (void)containersInDatabase:(NSUInteger)databaseID meta:(NSArray *)meta completionHandler:(void (^)(id containers, NSError *error))completionHandler;
-- (void)itemsInDatabase:(NSUInteger)databaseID meta:(NSArray *)meta completionHandler:(void (^)(id items, NSError *error))completionHandler;
-- (void)itemsInDatabase:(NSUInteger)databaseID containerID:(NSUInteger)containerID meta:(NSArray *)meta completionHandler:(void (^)(id items, NSError *error))completionHandler;
+- (void)itemsInDatabase:(NSUInteger)databaseID meta:(NSArray *)meta query:(NSString *)query completionHandler:(void (^)(id items, NSError *error))completionHandler;
+- (void)itemsInDatabase:(NSUInteger)databaseID containerID:(NSUInteger)containerID meta:(NSArray *)meta query:(NSString *)query completionHandler:(void (^)(id items, NSError *error))completionHandler;
 - (void)artworkForItemID:(NSUInteger)itemID inDatabaseID:(NSUInteger)databaseID completionHandler:(void (^)(UIImage *image, NSError *error))completionHandler;
 
 @end

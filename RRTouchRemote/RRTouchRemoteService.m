@@ -31,7 +31,7 @@
 #import "RRDMAP.h"
 
 
-#define URL_ESCAPE( __STRING__ ) (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)__STRING__, NULL, CFSTR("!*’();:@&=+$/?%#[]"), kCFStringEncodingUTF8)
+#define URL_ESCAPE( __STRING__ ) (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)__STRING__, NULL, CFSTR("*’;@&=$/?%#[]"), kCFStringEncodingUTF8)
 
 
 @implementation RRTouchRemoteService {
@@ -97,7 +97,7 @@
         [mutablePath appendFormat:@"%@=%@&", URL_ESCAPE(key), URL_ESCAPE(obj)];
     }];
     [mutablePath deleteCharactersInRange:NSMakeRange(mutablePath.length -1, 1)];
-    
+
     // Add headers
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: mutablePath]];
     [request setValue:@"1"    forHTTPHeaderField:@"Viewer-Only-Client"];
@@ -159,7 +159,7 @@
 }
 
 
-- (void)groupsInDatabase:(NSUInteger)databaseID type:(RRGroupType)type meta:(NSArray *)meta completionHandler:(void (^)(id groups, NSError *error))completionHandler {
+- (void)groupsInDatabase:(NSUInteger)databaseID type:(RRGroupType)type meta:(NSArray *)meta query:(NSString *)query completionHandler:(void (^)(id groups, NSError *error))completionHandler {
 
     NSString *groupType;
     switch ( type ) {
@@ -174,9 +174,10 @@
     }
     
     meta = meta?:@[@"all"];
+    query= query?:@"";
 
     [NSURLConnection sendAsynchronousRequest: [self requestForPath: [NSString stringWithFormat:@"/databases/%lu/groups", (unsigned long)databaseID]
-                                                        queryItems: @{@"group-type":groupType, @"meta":meta}]
+                                                        queryItems: @{@"group-type":groupType, @"meta":meta, @"query": query}]
                                        queue: [NSOperationQueue mainQueue]
                            completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                
@@ -204,12 +205,13 @@
 }
 
 
-- (void)itemsInDatabase:(NSUInteger)databaseID meta:(NSArray *)meta completionHandler:(void (^)(id items, NSError *error))completionHandler {
+- (void)itemsInDatabase:(NSUInteger)databaseID meta:(NSArray *)meta query:(NSString *)query completionHandler:(void (^)(id items, NSError *error))completionHandler {
 
     meta = meta?:@[@"all"];
+    query= query?:@"";
     
     [NSURLConnection sendAsynchronousRequest: [self requestForPath: [NSString stringWithFormat:@"/databases/%lu/items", (unsigned long)databaseID]
-                                                        queryItems: @{@"meta":meta}]
+                                                        queryItems: @{@"meta":meta, @"query":query}]
                                        queue: [NSOperationQueue mainQueue]
                            completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                
@@ -221,12 +223,13 @@
 }
 
 
-- (void)itemsInDatabase:(NSUInteger)databaseID containerID:(NSUInteger)containerID meta:(NSArray *)meta completionHandler:(void (^)(id items, NSError *error))completionHandler {
+- (void)itemsInDatabase:(NSUInteger)databaseID containerID:(NSUInteger)containerID meta:(NSArray *)meta query:(NSString *)query completionHandler:(void (^)(id items, NSError *error))completionHandler {
     
     meta = meta?:@[@"all"];
+    query= query?:@"";
     
     [NSURLConnection sendAsynchronousRequest: [self requestForPath: [NSString stringWithFormat:@"/databases/%lu/containers/%lu/items", (unsigned long)databaseID, (unsigned long)containerID]
-                                                        queryItems: @{@"meta":meta}]
+                                                        queryItems: @{@"meta":meta, @"query":query}]
                                        queue: [NSOperationQueue mainQueue]
                            completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                
