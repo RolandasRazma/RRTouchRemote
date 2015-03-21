@@ -76,10 +76,10 @@
 
 - (void)setPlaylists:(NSArray *)playlists {
     
-    // Remove items without name - AppleTV returns them for some reason...
+    // Remove daap.baseplaylist as no idea what they are :)
     NSMutableArray *mutablePlaylists = [playlists mutableCopy];
     [mutablePlaylists enumerateObjectsUsingBlock: ^(NSDictionary *item, NSUInteger idx, BOOL *stop) {
-        if( !item[@"dmap.itemname"] ){
+        if( item[@"daap.baseplaylist"] ){
             [mutablePlaylists removeObject:item];
         }
     }];
