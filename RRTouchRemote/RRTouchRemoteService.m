@@ -31,7 +31,7 @@
 #import "RRDMAP.h"
 
 
-#define URL_ESCAPE( __STRING__ ) (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)__STRING__, NULL, CFSTR("!*’();:@&=+$,/?%#[]"), kCFStringEncodingUTF8)
+#define URL_ESCAPE( __STRING__ ) (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)__STRING__, NULL, CFSTR("!*’();:@&=+$/?%#[]"), kCFStringEncodingUTF8)
 
 
 @implementation RRTouchRemoteService {
