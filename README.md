@@ -5,7 +5,7 @@ iTunes and AppleTV remote controll using DMAP protocol
 RRTouchRemote *touchRemote = [[RRTouchRemote alloc] initWithName:@"RRTouchRemote" pairID:1111];
 ```
 
-If you newer did pairing
+If you never did pairing
 ```objc
 [touchRemote setDelegate:self];
 [touchRemote startAdvertising];
@@ -21,6 +21,8 @@ If you newer did pairing
     
 }
 ```
+Go to AppleTV or iTunes and add remote with any password (not checked)
+
 
 If you did pairing and already have serviceName
 ```objc
