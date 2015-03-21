@@ -46,7 +46,7 @@
     [super viewDidAppear:animated];
     
     [_touchRemoteService containersInDatabase: _databaseID
-                                         meta: nil
+                                         meta: @[@"dmap.itemname", @"dmap.itemid", @"dmap.itemcount"]
                             completionHandler: ^(id containers , NSError *error) {
                                 [self setPlaylists: containers[@"dmap.listing"][@"dmap.listingitem"]];
                             }];
