@@ -46,9 +46,12 @@
     NSUInteger          _pairID;
     
     NSNetService        *_netService;
-    NSUInteger          _netServiceOutputSendByteIndex;
+    NSOutputStream      *_netServiceOutputStream;
     NSDictionary        *_netServiceRemoteRequest;
-    NSData              *_netServiceHandshakeData;
+    
+    NSMutableData       *_inputStreamData;
+    NSData              *_outputStreamData;
+    NSUInteger          _outputStreamDataSendByteIndex;
     
     NSNetServiceBrowser *_netServiceBrowser;
     NSMutableSet        *_netServiceBrowserServices;
@@ -91,12 +94,12 @@
                                                   type: @"_touch-remote._tcp"
                                                   name: _name
                                                   port: 0];
-
+    
     [_netService setTXTRecordData: [NSNetService dataFromTXTRecordDictionary:@{
                                                                                @"txtvers": @"1",
-                                                                                  @"DvNm": _name,
-                                                                                  @"RemN": @"Remote",
-                                                                                  @"Pair": [NSString stringWithFormat:@"%016lX", (unsigned long)_pairID]
+                                                                               @"DvNm": _name,
+                                                                               @"RemN": @"Remote",
+                                                                               @"Pair": [NSString stringWithFormat:@"%016lX", (unsigned long)_pairID]
                                                                                }]];
     [_netService setDelegate:self];
     
@@ -109,25 +112,6 @@
     [_netService setDelegate:nil];
     [_netService stop];
     _netService = nil;
-}
-
-
-- (NSData *)netServiceHandshakeData {
-    
-    if( !_netServiceHandshakeData ){
-        NSData *daapData = [RRDMAP dataFromDictionary: @{ @"cmpa": @{
-                                                                  @"cmpg": @(_pairID),
-                                                                  @"cmnm": _name}}];
-        
-        NSMutableData *httpData = [NSMutableData data];
-        [httpData appendData: [@"HTTP/1.1 200 OK\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [httpData appendData: [[NSString stringWithFormat:@"Content-Length: %zu\r\n\r\n", daapData.length] dataUsingEncoding:NSUTF8StringEncoding]];
-        [httpData appendData: daapData];
-        
-        _netServiceHandshakeData = [httpData copy];
-    }
-    
-    return _netServiceHandshakeData;
 }
 
 
@@ -145,7 +129,7 @@
 - (void)stopLookingForServices {
     [_netServiceBrowser setDelegate:nil];
     [_netServiceBrowser stop];
-
+    
     for( NSNetService *service in _netServiceBrowserServices ){
         [service setDelegate:nil];
         [service stop];
@@ -159,7 +143,7 @@
 
 - (void)findServiceWithName:(NSString *)serviceName completionHandler:(void (^)(RRTouchRemoteService *service))completionHandler {
     NSAssert(serviceName, @"No serviceName specifyed.");
-
+    
     __weak RRTouchRemote *weakSelf = self;
     [self startLookingForServicesUsingBlock: ^( NSNetService *service ) {
         
@@ -176,34 +160,123 @@
 }
 
 
+- (void)readFromStream:(NSInputStream *)stream {
+    
+    if( !_inputStreamData ) {
+        _inputStreamData = [NSMutableData data];
+    }
+    
+    uint8_t buf[1024];
+    NSInteger bufLength = [stream read:buf maxLength:1024];
+    
+    if( bufLength ) {
+        [_inputStreamData appendBytes:buf length:bufLength];
+        
+        if ( bufLength > 4 && (memcmp(&buf[bufLength -4], "\r\n\r\n", 4) == 0) ) {
+            
+            // Parse out request URL
+            NSScanner *scanner = [NSScanner scannerWithString: [[NSString alloc] initWithData:_inputStreamData encoding:NSUTF8StringEncoding]];
+            [scanner scanUpToString:@"/pair" intoString:NULL];
+            
+            NSString *uri;
+            [scanner scanUpToString:@" " intoString:&uri];
+            
+            NSURLComponents *components = [NSURLComponents componentsWithString:uri];
+            NSMutableDictionary *remoteRequest = [NSMutableDictionary dictionary];
+            for( NSURLQueryItem *queryItem in components.queryItems ){
+                [remoteRequest setObject:queryItem.value forKey:queryItem.name];
+            }
+            
+            _netServiceRemoteRequest = [remoteRequest copy];
+            
+            // Generate response
+            NSData *daapData = [RRDMAP dataFromDictionary: @{ @"cmpa": @{
+                                                                      @"cmpg": @(_pairID),
+                                                                      @"cmnm": _name}}];
+            
+            NSMutableData *httpData = [NSMutableData data];
+            [httpData appendData: [[NSString stringWithFormat:@"HTTP/1.1 200 OK\r\nContent-Length: %zu\r\n\r\n", daapData.length] dataUsingEncoding:NSUTF8StringEncoding]];
+            [httpData appendData: daapData];
+            
+            _outputStreamData = [httpData copy];
+        }
+        
+    }
+    
+}
+
+
+- (void)writeToStream:(NSOutputStream *)stream {
+    
+    // do we have what to write?
+    if( _outputStreamDataSendByteIndex == _outputStreamData.length ) {
+        [self closeStream:stream];
+        return;
+    }
+
+    NSUInteger dataLength = [_outputStreamData length];
+    uint8_t *readBytes = (uint8_t *)[_outputStreamData bytes];
+    
+    readBytes += _outputStreamDataSendByteIndex;
+    
+    NSInteger bufferLength = ((dataLength -_outputStreamDataSendByteIndex >= 1024) ? 1024 : (dataLength -_outputStreamDataSendByteIndex));
+    
+    uint8_t buffer[bufferLength];
+    memcpy(buffer, readBytes, bufferLength);
+    
+    bufferLength = [stream write:(const uint8_t *)buffer maxLength:bufferLength];
+    
+    _outputStreamDataSendByteIndex += bufferLength;
+    
+}
+
+
+- (void)closeStream:(NSStream *)stream {
+    [stream close];
+    [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    if( [stream isKindOfClass:[NSOutputStream class]] ){
+        if( [_delegate respondsToSelector:@selector(touchRemote:didPairedWithServiceNamed:)] ){
+            [_delegate touchRemote:self didPairedWithServiceNamed: _netServiceRemoteRequest[@"servicename"]];
+        }
+        
+        _netServiceRemoteRequest        = nil;
+        _netServiceOutputStream         = nil;
+        _outputStreamData               = nil;
+        _outputStreamDataSendByteIndex  = 0;
+    }else{
+        _inputStreamData = nil;
+    }
+}
+
+
 #pragma mark -
 #pragma marl NSNetServiceDelegate
 
 
 - (void)netService:(NSNetService *)service didAcceptConnectionWithInputStream:(NSInputStream *)inputStream outputStream:(NSOutputStream *)outputStream {
-
-    _netServiceOutputSendByteIndex  = 0;
-    _netServiceRemoteRequest        = nil;
     
+    // NSInputStream
     [inputStream setDelegate:self];
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode: NSDefaultRunLoopMode];
     [inputStream open];
     
+    // NSOutputStream
     [outputStream setDelegate:self];
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode: NSDefaultRunLoopMode];
     [outputStream open];
-
+    
 }
 
 
 - (void)netServiceDidResolveAddress:(NSNetService *)service {
-
+    
     if ( [_netServiceBrowserServices containsObject:service] ) {
         _lookingForServicesBlock( service );
         
         [_netServiceBrowserServices removeObject:service];
     }
-
+    
 }
 
 
@@ -215,69 +288,24 @@
     
     switch( eventCode ) {
         case NSStreamEventHasSpaceAvailable: {
-
-            NSData *netServiceHandshakeData = self.netServiceHandshakeData;
-            
-            NSUInteger data_len = [netServiceHandshakeData length];
-            uint8_t *readBytes = (uint8_t *)[netServiceHandshakeData bytes];
-            
-            readBytes += _netServiceOutputSendByteIndex;
-            
-            NSInteger len = ((data_len -_netServiceOutputSendByteIndex >= 1024) ? 1024 : (data_len -_netServiceOutputSendByteIndex));
-            
-            uint8_t buf[len];
-            memcpy(buf, readBytes, len);
-            
-            len = [(NSOutputStream *)aStream write:(const uint8_t *)buf maxLength:len];
-            
-            _netServiceOutputSendByteIndex += len;
-            
+            if( _outputStreamData ){
+                [self writeToStream:(NSOutputStream *)aStream];
+            }else{
+                _netServiceOutputStream = (NSOutputStream *)aStream;
+            }
             break;
         }
         case NSStreamEventHasBytesAvailable: {
-            NSLog(@"NSStreamEventHasBytesAvailable");
+            [self readFromStream:(NSInputStream *)aStream];
             
-            uint8_t buf[1024];
-            NSInteger len = [(NSInputStream *)aStream read:buf maxLength:1024];
-            
-            if( len ) {
-                NSData *data = [NSData dataWithBytes:buf length:len];
-
-                // Parse out request URL
-                NSScanner *scanner = [NSScanner scannerWithString: [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-                [scanner scanUpToString:@"/pair" intoString:NULL];
-                
-                NSString *uri;
-                [scanner scanUpToString:@" " intoString:&uri];
-
-                NSURLComponents *components = [NSURLComponents componentsWithString:uri];
-                NSMutableDictionary *remoteRequest = [NSMutableDictionary dictionary];
-                for( NSURLQueryItem *queryItem in components.queryItems ){
-                    [remoteRequest setObject:queryItem.value forKey:queryItem.name];
-                }
-                
-                _netServiceRemoteRequest = [remoteRequest copy];
+            if( _outputStreamData && [_netServiceOutputStream hasSpaceAvailable] ){
+                [self writeToStream: _netServiceOutputStream];
             }
             
             break;
         }
         case NSStreamEventEndEncountered: {
-            
-            [aStream close];
-            [aStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            
-            if( [aStream isKindOfClass:[NSOutputStream class]] ){
-                _netServiceHandshakeData = nil;
-                
-                if( !_netServiceRemoteRequest[@"servicename"] ){
-                    NSLog(@"hoi");
-                    return;
-                }
-                if( [_delegate respondsToSelector:@selector(touchRemote:didPairedWithServiceNamed:)] ){
-                    [_delegate touchRemote:self didPairedWithServiceNamed: _netServiceRemoteRequest[@"servicename"]];
-                }
-            }
-            
+            [self closeStream:aStream];
             break;
         }
         case NSStreamEventErrorOccurred: {
@@ -298,7 +326,7 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)serviceBrowser didFindService:(NSNetService *)service moreComing:(BOOL)moreComing {
     [_netServiceBrowserServices addObject:service];
-
+    
     [service setDelegate:self];
     [service resolveWithTimeout:10.0f];
 }
