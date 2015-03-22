@@ -33,8 +33,8 @@
 @implementation RRItemsTableViewController {
     RRTouchRemoteService    *_touchRemoteService;
     NSUInteger  _databaseID;
-    NSArray     *_items;
     NSUInteger  _containerID;
+    NSArray     *_items;
 }
 
 
@@ -48,15 +48,15 @@
     if( _containerID ){
         [_touchRemoteService itemsInDatabase: _databaseID
                                  containerID: _containerID
-                                        meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist"]
+                                        meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist", @"com.apple.itunes.extended-media-kind"]
                                        query: @"('com.apple.itunes.extended-media-kind:1','com.apple.itunes.extended-media-kind:64')"
                            completionHandler: ^(id items, NSError *error) {
                                [self setItems: items[@"dmap.listing"][@"dmap.listingitem"]];
                            }];
     }else{
         [_touchRemoteService itemsInDatabase: _databaseID
-                                        meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist"]
-                                       query: @"('com.apple.itunes.extended-media-kind:1','com.apple.itunes.extended-media-kind:64')"
+                                        meta: @[@"dmap.itemname", @"dmap.itemid", @"daap.songalbum", @"daap.songalbumartist", @"com.apple.itunes.extended-media-kind"]
+                                       query: @"'com.apple.itunes.extended-media-kind:1'"
                            completionHandler: ^(id items, NSError *error) {
                                [self setItems: items[@"dmap.listing"][@"dmap.listingitem"]];
                            }];
@@ -101,6 +101,33 @@
                         }];
     
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary *listingItem = _items[indexPath.row];
+    
+    // If its video
+    if( [listingItem[@"com.apple.itunes.extended-media-kind"] intValue] == 64 ){
+        [_touchRemoteService playSpecItemID: [listingItem[@"dmap.itemid"] unsignedIntegerValue]
+                                 databaseID: _databaseID
+                                containerID: _containerID
+                          completionHandler: ^(NSError *error) {
+                              
+                          }];
+    }else{
+        [_touchRemoteService playItemID: [listingItem[@"dmap.itemid"] unsignedIntegerValue]
+                             databaseID: _databaseID
+                      completionHandler: ^(NSError *error) {
+                          
+                      }];
+    }
+    
 }
 
 
