@@ -52,5 +52,7 @@ typedef NS_ENUM(NSUInteger, RRGroupType) {
 - (void)itemsInDatabase:(NSUInteger)databaseID containerID:(NSUInteger)containerID meta:(NSArray *)meta query:(NSString *)query completionHandler:(void (^)(id items, NSError *error))completionHandler;
 - (void)artworkForItemID:(NSUInteger)itemID inDatabaseID:(NSUInteger)databaseID completionHandler:(void (^)(UIImage *image, NSError *error))completionHandler;
 - (void)artworkForGroupID:(NSUInteger)groupID inDatabaseID:(NSUInteger)databaseID type:(RRGroupType)type completionHandler:(void (^)(UIImage *image, NSError *error))completionHandler;
-    
+- (void)playItemID:(NSUInteger)itemID databaseID:(NSUInteger)databaseID completionHandler:(void (^)(NSError *error))completionHandler;
+- (void)playSpecItemID:(NSUInteger)itemID databaseID:(NSUInteger)databaseID containerID:(NSUInteger)containerID completionHandler:(void (^)(NSError *error))completionHandler;
+
 @end

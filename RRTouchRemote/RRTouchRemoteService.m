@@ -277,4 +277,31 @@
 }
 
 
+- (void)playItemID:(NSUInteger)itemID databaseID:(NSUInteger)databaseID completionHandler:(void (^)(NSError *error))completionHandler {
+    
+    [NSURLConnection sendAsynchronousRequest: [self requestForPath: [NSString stringWithFormat:@"/ctrl-int/%lu/playqueue-edit", (unsigned long)databaseID]
+                                                        queryItems: @{@"command": @"add", @"mode": @1, @"query": [NSString stringWithFormat:@"'dmap.itemid:%lu'", itemID]}]
+                                       queue: [NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               completionHandler( connectionError );
+                           }];
+    
+}
+
+
+- (void)playSpecItemID:(NSUInteger)itemID databaseID:(NSUInteger)databaseID containerID:(NSUInteger)containerID completionHandler:(void (^)(NSError *error))completionHandler {
+
+    [NSURLConnection sendAsynchronousRequest: [self requestForPath: [NSString stringWithFormat:@"/ctrl-int/%lu/playspec", (unsigned long)databaseID]
+                                                        queryItems: @{
+                                                                       @"database-spec": [NSString stringWithFormat:@"'dmap.persistentid:0x%016lX'", databaseID],
+                                                                      @"container-spec": [NSString stringWithFormat:@"'dmap.persistentid:0x%016lX'", containerID],
+                                                                           @"item-spec": [NSString stringWithFormat:@"'dmap.itemid:0x%016lX'", itemID]}]
+                                       queue: [NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               completionHandler( connectionError );
+                           }];
+    
+}
+
+
 @end
