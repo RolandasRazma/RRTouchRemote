@@ -42,6 +42,13 @@
 #pragma mark UIViewController
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.navigationItem setHidesBackButton:YES animated:NO];
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ( [segue.identifier isEqualToString:@"RRDatabaseViewController"] ) {
