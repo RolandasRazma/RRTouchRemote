@@ -1,3 +1,3 @@
 [submodule "RRTouchRemote/dmap-parser"]
 	path = RRTouchRemote/dmap-parser
-	url = https://github.com/mattstevens/dmap-parser.git
+	url  = https://github.com/RolandasRazma/dmap-parser.git
